@@ -33,7 +33,7 @@ def display_word():
     )
 
 # ------------------ UI ------------------
-st.title("🎮 Advanced Word Guessing Game")
+st.title(" Advanced Word Guessing Game")
 
 difficulty = st.selectbox("Select Difficulty", ["Easy", "Medium", "Hard"])
 
@@ -41,10 +41,10 @@ if st.button("Start Game"):
     start_game(difficulty)
 
 if st.session_state.game_started:
-    st.subheader("🔤 Guess the Word")
+    st.subheader(" Guess the Word")
     st.markdown(f"### `{display_word()}`")
 
-    st.info(f"❤️ Lives: {st.session_state.lives} | ⭐ Score: {st.session_state.score}")
+    st.info(f" Lives: {st.session_state.lives} |  Score: {st.session_state.score}")
 
     guess = st.text_input("Enter a letter", max_chars=1).lower()
 
@@ -56,18 +56,18 @@ if st.session_state.game_started:
                 if guess not in st.session_state.guessed:
                     st.session_state.guessed.add(guess)
                     if guess in st.session_state.word:
-                        st.success("✅ Correct!")
+                        st.success(" Correct!")
                         st.session_state.score += 10
                     else:
-                        st.error("❌ Wrong!")
+                        st.error(" Wrong!")
                         st.session_state.lives -= 1
                 else:
-                    st.warning("⚠️ Already guessed!")
+                    st.warning(" Already guessed!")
             else:
-                st.warning("⚠️ Enter one valid letter!")
+                st.warning(" Enter one valid letter!")
 
     with col2:
-        if st.button("Hint 💡"):
+        if st.button("Hint "):
             if not st.session_state.hint_used:
                 hint_letter = random.choice(
                     [l for l in st.session_state.word if l not in st.session_state.guessed]
@@ -81,10 +81,11 @@ if st.session_state.game_started:
     # ------------------ WIN / LOSE ------------------
     if all(letter in st.session_state.guessed for letter in st.session_state.word):
         st.balloons()
-        st.success(f"🎉 You WON! Word: **{st.session_state.word}**")
+        st.success(f" You WON! Word: **{st.session_state.word}**")
 
     elif st.session_state.lives == 0:
-        st.error(f"💀 Game Over! Word was **{st.session_state.word}**")
+        st.error(f" Game Over! Word was **{st.session_state.word}**")
 
-    if st.button("Restart Game 🔄"):
+    if st.button("Restart Game "):
         st.session_state.game_started = False
+
